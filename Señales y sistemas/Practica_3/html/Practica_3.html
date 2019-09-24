@@ -1,0 +1,809 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Practica 3: Se&ntilde;ales Continuas</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-09-24"><meta name="DC.source" content="Practica_3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Practica 3: Se&ntilde;ales Continuas</h1><!--introduction--><div><ul><li>Enriquez Melendez Jeus</li><li>Rosas Palacios Alan</li></ul></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos</a></li><li><a href="#2">Introducci&oacute;n</a></li><li><a href="#3">Desarrollo</a></li><li><a href="#4">Problema 1</a></li><li><a href="#5">Problema 2</a></li><li><a href="#6">Problema 3</a></li><li><a href="#7">Problema 4</a></li><li><a href="#8">M1.1 Funciones anonimas</a></li><li><a href="#16">M1.2 Operadores relacionales y la funci&oacute;n de paso de unitario</a></li><li><a href="#23">M1.3 Operaciones de visualizaci&oacute;n en la variable independiente</a></li><li><a href="#28">M1.4 Integraci&oacute;n num&eacute;rica y estimaci&oacute;n de energ&iacute;a de se&ntilde;al</a></li><li><a href="#36">Problema 5</a></li><li><a href="#37">Problema 1.2.2</a></li><li><a href="#43">Problema 6</a></li><li><a href="#44">Problema 1.1.3</a></li><li><a href="#61">Problema 7</a></li><li><a href="#62">Problema 1.1.4</a></li><li><a href="#68">Referencias</a></li></ul></div><h2 id="1">Objetivos</h2><div><ul><li>Manipulaci&oacute;n b&aacute;sica de MATLAB</li><li>Gr&aacute;ficas de se&ntilde;ales reales y complejas continuas</li><li>Transformaci&oacute;n de se&ntilde;ales continuas (escalamientos y traslaciones)</li><li>Calculo de energia y potencia de se&ntilde;ales continuas</li></ul></div><h2 id="2">Introducci&oacute;n</h2><p>MATLAB (Matrix Laboratory, &#8220;laboratorios de matrices&#8221;) creado en 1984 por Mathworks. Es un software matem&aacute;tico con entorno de desarrollo integrado (IDE) que tiene un lenguaje de programaci&oacute;n propio (Lenguaje M) y es multiplataforma (Unix, Windows y Apple Mac Os X).</p><p>La primera versi&oacute;n surge de la idea de Clave Moler de usar paquetes de subrutinas escritas en Fortran en los cursos de An&aacute;lisis Num&eacute;rico y Algebra Lineal, sin tener una necesidad de programas que usaran este lenguaje. Posteriormente en 1970 se crea el lenguaje de programaci&oacute;n M proporcionando un acceso sencillo al software de matrices LINPACK y EISPACK sin tener que hacer uso del Lenguaje Fortran.</p><p>El uso de MATLAB se ha vuelto indispensable en el d&iacute;a a d&iacute;a de ingenieros, matem&aacute;ticos, f&iacute;sicos, empresas, estudiantes, entre otros. Sin embargo, este software tiene un costo elevado para algunos por lo cual existen alternativas de software libre entre las cuales se encuentra Octave y Python con los cuales podremos realizar acciones iguales a las que proporciona MATLAB.</p><div><ul><li>GNU OCTAVE:</li></ul></div><p>GNU Octave puede ser la alternativa m&aacute;s conocida a MATLAB. En desarrollo activo durante casi tres d&eacute;cadas, Octave se ejecuta en Windows, Mac y Linux, y est&aacute; empaquetado para la mayor&iacute;a de las distribuciones principales. Si est&aacute; buscando un proyecto que sea lo m&aacute;s parecido posible al lenguaje MATLAB real, Octave puede ser una buena opci&oacute;n para usted; se esfuerza por una compatibilidad exacta, por lo que muchos de sus proyectos desarrollados para MATLAB pueden ejecutarse en Octave sin necesidad de modificaciones.</p><p>A continuaci&oacute;n se adjunta un enlace donde encontrar informaci&oacute;n acerca de GNU Octave <a href="https://www.gnu.org/software/octave/">enlace</a></p><div><ul><li>Python</li></ul></div><p>Anaconda: Alternativa a Canopy con instaladores para Windows, MacOS y Linux. Si bien es menos completo que Canopy, Anaconda tiene las librer&iacute;as de Python m&aacute;s importantes. Tambi&eacute;n tiene opciones comerciales para acelerar c&oacute;digo pero la ventaja de Anaconda es que puedes usar Python 3 (versi&oacute;n m&aacute;s reciente y recomendable si est&aacute;s empezando). En resumen, para instalar Python en Windows Anaconda es la mejor opci&oacute;n.</p><p>Python(x,y) y/o WinPython: Alternativa totalmente libre y gratuita orientada especialmente para ingenieros que quieren migrar de MATLAB a Python. De las anteriores es la que menos paquetes o librer&iacute;as dispone pero es la forma m&aacute;s sencilla de empezar. Amabas son s&oacute;lo para Windows siendo WinPython la opci&oacute;n m&aacute;s interesante puesto que no requiere instalaci&oacute;n (portable) y la puedes llevar en tu memoria USB.</p><p>Canopy: Conocida anteriormente como Enthought, dispone de instaladores para Windows, MAC y Linux totalmente autom&aacute;ticos. Adem&aacute;s incluye la mayor&iacute;a de librer&iacute;as y un sistema para a&ntilde;adir o actualizar los paquetes de Python de forma autom&aacute;tica.  A d&iacute;a de hoy no dispone de Python 3 por lo que recomendamos Anaconda (primera opci&oacute;n) que, a diferencia de Canopy, permite su uso en empresa de forma gratuita.</p><p>A continuaci&oacute;n se adjunta un enlace donde encontrar informaci&oacute;n acerca de Python <a href="https://www.python.org">enlace</a></p><h2 id="3">Desarrollo</h2><h2 id="4">Problema 1</h2><p>La funci&oacute;n <i>fun1</i> recibe dos parametros <img src="Practica_3_eq08589834809570054062.png" alt="$\omega$" style="width:7px;height:6px;"> , <img src="Practica_3_eq05508344529756732484.png" alt="$a$" style="width:6px;height:6px;"> y regresa la evaluaci&oacute;n <img src="Practica_3_eq01407365636722940873.png" alt="$F(\omega)=a/(a^2+\omega^2)$" style="width:99px;height:14px;">.</p><p>Esta funci&oacute;n trabaja con <img src="Practica_3_eq16064389548595522758.png" alt="$a\in R$" style="width:29px;height:9px;"> y <img src="Practica_3_eq14447547358292026003.png" alt="$w\in  R^n$" style="width:37px;height:10px;">.</p><pre class="language-matlab"><span class="keyword">function</span> [F] = fun1 (a,w)
+w=length(w);
+F=a/((a^2).*(w.^2));
+<span class="keyword">end</span>
+</pre><h2 id="5">Problema 2</h2><p>Funci&oacute;n que gr&aacute;fica funciones de <img src="Practica_3_eq02145986785580767623.png" alt="$f:R\rightarrow R$" style="width:53px;height:11px;">. Ejemplo, la gr&aacute;fica de <img src="Practica_3_eq04634431881849194213.png" alt="$F(\omega)$" style="width:25px;height:12px;"> vs <img src="Practica_3_eq08589834809570054062.png" alt="$\omega$" style="width:7px;height:6px;"> en el intervalo <img src="Practica_3_eq01169792831847459841.png" alt="$[-2,2]$" style="width:30px;height:12px;"> para <img src="Practica_3_eq13016372792947090052.png" alt="$a=1$" style="width:27px;height:9px;">.</p><pre class="language-matlab"><span class="keyword">function</span> []= Mifigure()
+   w = -2:0.01:2;
+   a=1;
+           figure
+           plot(w,a./((a^2).*(w.^2)))
+<span class="keyword">end</span>
+</pre><p>Obteniendo como resultado al llamarla</p><pre class="codeinput">Mifigure()
+</pre><img vspace="5" hspace="5" src="Practica_3_01.png" alt=""> <h2 id="6">Problema 3</h2><p>No se realiza</p><h2 id="7">Problema 4</h2><h2 id="8">M1.1 Funciones anonimas</h2><p>Una manera simple de usar funciones en MATLAB es utilizando funciones anonimas. Una funci&oacute;n an&oacute;nima es una funci&oacute;n que se almacena en un archivo de programa, pero est&aacute; asociada a una variable cuyo tipo de datos es notfunction_handle Las funciones an&oacute;nimas pueden aceptar entradas y salidas de retorno, tal como lo hacen las funciones est&aacute;ndar. Sin embargo, solo pueden contener una sola instrucci&oacute;n ejecutable.</p><pre class="codeinput">f= @(t) exp(-t).*cos(2*pi*t);
+</pre><p>Una vez definida, <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;"> puede ser evaluada simplemente pasandole un valor de entrada interesante. Por ejemplo,</p><pre class="codeinput">t=0;
+f(t)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>Evaluando <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;"> en <img src="Practica_3_eq16912281546434447644.png" alt="$t=0$" style="width:26px;height:9px;">, se espera confirmar el resultado esperado. El mismo resultado es obtenido pasando <img src="Practica_3_eq16912281546434447644.png" alt="$t=0$" style="width:26px;height:9px;"> directamente.</p><pre class="codeinput">f(0)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>Las entradas vectoriales permiten la evaluaci&oacute;n de m&uacute;ltiples valores simult&aacute;neamente. Considere la tarea de graficar <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;"> durante el intervalo <img src="Practica_3_eq05485204865076814184.png" alt="$(-2\leq t \leq  2)$" style="width:64px;height:12px;">. El comportamiento bruto de la funci&oacute;n es claro: <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;"> debe oscilar cuatro veces con una envoltura en descomposici&oacute;n. Dado que los bocetos precisos a mano son engorrosos, las graficas generadas por MATLAB son una alternativa atractiva. Como lo ilustra el siguiente ejemplo, se debe tener cuidado para garantizar resultados confiables.</p><p>Supongamos que el vector <img src="Practica_3_eq12656067504604335951.png" alt="$t$" style="width:4px;height:8px;"> se elige para incluir solo los enteros contenidos en <img src="Practica_3_eq05485204865076814184.png" alt="$(-2\leq t \leq  2)$" style="width:64px;height:12px;">, que lo mismo que <img src="Practica_3_eq15335775307158373098.png" alt="$\left [ -2, -1,0,1,2 \right ]$" style="width:73px;height:12px;">.</p><pre class="codeinput">t=(-2:2);
+</pre><p>Esta entrada vectorial se eval&uacute;a para formar una salida vectorial.</p><pre class="codeinput">f(t)
+</pre><pre class="codeoutput">
+ans =
+
+    7.3891    2.7183    1.0000    0.3679    0.1353
+
+</pre><p>El comando plot representa gr&aacute;ficamente el resultado, que se muestra en la Fig. M1.1.</p><pre class="codeinput">plot(t,f(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'f(t)'</span>); grid;
+title(<span class="string">'Figura M1.1: f(t)=e^{-t}cos(2 \pi t) para t = (-2:2)'</span>);
+</pre><img vspace="5" hspace="5" src="Practica_3_02.png" alt=""> <p>La cuadricula es a&ntilde;adida por el comando grid. Desafortunadamente, plot no ilustra el comportamiento oscilatorio esperado. Se requieren m&aacute;s puntos para representar adecuadamente <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;">.</p><p>La siguiente pregunta es, &iquest;cuantos puntos son suficientes? Si pocos puntos son elegidos, la informacion se pierde, graficando 20 a 200 puntos por oscilacion es normalmente adecuado. Para representar este caso, <img src="Practica_3_eq12656067504604335951.png" alt="$t$" style="width:4px;height:8px;"> es elegida para dar 100 puntos por oscilacion.</p><pre class="codeinput">t=(-2:0.01:2);
+</pre><p>Nuevamente la funcion es evaluada y graficada. Resultando lo mosrado en la figura M1.2.</p><pre class="codeinput">plot (t,f(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'f(t)'</span>); grid;
+title(<span class="string">'Figura M1.2: f(t)=e^{-t}cos(2 \pi t) para t = (-2:0.01:2)'</span>);
+</pre><img vspace="5" hspace="5" src="Practica_3_03.png" alt=""> <h2 id="16">M1.2 Operadores relacionales y la funci&oacute;n de paso de unitario</h2><p>La funcion de paso de unitario <img src="Practica_3_eq17794740544861059683.png" alt="$u(t)$" style="width:19px;height:12px;"> surge naturalmente en muchas situaciones pr&aacute;cticas. Por ejemplo, un paso unitario puede modelar el acto de encender un sistema. Con la ayuda de operadores relacionales, los objetos en l&iacute;nea pueden representar la funci&oacute;n de paso unitario. En MATLAB, Un operador relacional compara dos elementos. Si la comparaci&oacute;n es verdadera, se devuelve un verdadero l&oacute;gico (1). Si la comparaci&oacute;n es falsa, se devuelve un falso l&oacute;gico (0). Algunas veces llamadas funciones indicadoras, los operadores relacionales indican si una condici&oacute;n es verdadera. Seis operadores relacionales est&aacute;n disponibles: &lt;, &gt;, &lt;=, &gt;=, ==, y ~=. La funci&oacute;n de paso unitario se define f&aacute;cilmente utilizando el operador relacional &gt;=.</p><pre class="codeinput">u =@(t) t&gt;=0;
+</pre><p>Cualquier funci&oacute;n con una discontinuidad de salto, como el paso de la unidad, es dif&iacute;cil de trazar. Considere trazar <img src="Practica_3_eq17794740544861059683.png" alt="$u(t)$" style="width:19px;height:12px;"> usando <img src="Practica_3_eq11669593803428597974.png" alt="$t=(-2:2)$" style="width:59px;height:12px;">.</p><pre class="codeinput"> t = (-2:2);
+</pre><p>Dos problemas significativos son evidentes en la gr&aacute;fica resultante, que se muestra en la figura M1.3. Primero, MATLAB escala autom&aacute;ticamente los ejes de la trama para unir estrechamente los datos. En este caso, esta caracter&iacute;stica normalmente deseable oscurece la mayor parte de la trama. En segundo lugar, MATLAB conecta los datos de la trama con l&iacute;neas, lo que dificulta la verdadera discontinuidad del salto. La resoluci&oacute;n aproximada del vector t enfatiza el efecto al mostrar una l&iacute;nea inclinada err&oacute;nea entre <img src="Practica_3_eq01200473053270956802.png" alt="$t = - 1$" style="width:42px;height:10px;"> y <img src="Practica_3_eq11105285364509294361.png" alt="$t - 0$" style="width:30px;height:10px;">.</p><pre class="codeinput"> plot (t,u(t));
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'u(t)'</span>);
+ title(<span class="string">'Figura M1.3: u(t) para t = (-2:2)'</span>);
+</pre><img vspace="5" hspace="5" src="Practica_3_04.png" alt=""> <p>El primer problema se corrige ampliando verticalmente el cuadro delimitador con el comando axis. El segundo problema se reduce, pero no se elimina, al agregar puntos al vector <img src="Practica_3_eq12656067504604335951.png" alt="$t$" style="width:4px;height:8px;">.</p><pre class="codeinput"> t = (-2:0.01:2);
+</pre><p>El argumento del vector de cuatro elementos del eje (axis) especifica el eje x m&iacute;nimo, el eje x m&aacute;ximo, el eje y m&iacute;nimo y el eje y m&aacute;ximo, respectivamente. Los resultados mejorados se muestran en la Fig. M1.4.</p><pre class="codeinput"> plot (t,u(t));
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'u(t)'</span>);
+ axis ([-2 2 -0.1 1.1]);
+ title(<span class="string">'Figura M1.4: u(t) para t = (-2:0.01:2) con modificaci&oacute;n de ejes'</span>);
+</pre><img vspace="5" hspace="5" src="Practica_3_05.png" alt=""> <p>Los operadores relacionales se pueden combinar usando AND l&oacute;gico, OR l&oacute;gico y negaci&oacute;n l&oacute;gica: &amp;, |, y ~, respectivamente. Por ejemplo (t&gt;0) &amp; (t&lt;1) y ~((t&lt;=0) | (t&gt;=1)) ambos correctos si <img src="Practica_3_eq10279398401853299785.png" alt="$0<t<1$" style="width:58px;height:11px;">. Para demostrar, considere definir y graficar la unidad de pulso <img src="Practica_3_eq14169428081249709707.png" alt="$p(t)=u(t)-u(t-1)$" style="width:136px;height:15px;">, como se muestra en la figura M1.5:</p><pre class="codeinput">p =@(t) t&gt;=0 &amp; t&lt;1;
+ t = (-1:0.01:2);
+ plot(t,p(t));
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'p(t) = u(t)-u(t-1)'</span>);
+ axis ([-1 2 -.1 1.1]);
+title(<span class="string">'Figura M1.5: p(t)=u(t)-u(t-1) sobre (-1&lt;=t&lt;=2)'</span>);
+</pre><img vspace="5" hspace="5" src="Practica_3_06.png" alt=""> <p>Para operandos escalares, MATLAB tambi&eacute;n admite dos construcciones l&oacute;gicas de cortocircuito. Se realiza un AND l&oacute;gico de cortocircuito utilizando &amp;&amp;, y se realiza un OR l&oacute;gico de cortocircuito utilizando | | Los operadores l&oacute;gicos de cortocircuito suelen ser m&aacute;s eficientes que los operadores l&oacute;gicos tradicionales porque prueban la segunda parte de la expresi&oacute;n solo cuando es necesario. Es decir, cuando la expresi&oacute;n escalar A se encuentra falsa en (A y B), la expresi&oacute;n escalar B no se eval&uacute;a, ya que un resultado falso ya est&aacute; garantizado. De manera similar, la expresi&oacute;n escalar B no se eval&uacute;a cuando la expresi&oacute;n escalar A se encuentra verdadera en (A | | B), ya que un resultado verdadero ya est&aacute; garantizado.</p><h2 id="23">M1.3 Operaciones de visualizaci&oacute;n en la variable independiente</h2><p>Se encuentran com&uacute;nmente dos operaciones en la variable independiente de una funci&oacute;n: desplazamiento y escalado. Los objetos en l&iacute;nea son adecuados para investigar ambas operaciones.</p><p>Comsiderando <img src="Practica_3_eq08499264393593915015.png" alt="$g(t)= f(t)u(t)= e^{-t}cos(2 pi t)u(t)$" style="width:214px;height:17px;"> Una versi&oacute;n realizable de <img src="Practica_3_eq09478123530129115431.png" alt="$f(t)$" style="width:19px;height:12px;">. Desafortunadamente, MATLAB no puede multiplicar objetos en l&iacute;nea. Es decir, MATLAB informa un error para g = f*u cuando f y u son objetos en l&iacute;nea. M&aacute;s bien, <img src="Practica_3_eq00097224828082125527.png" alt="$g(t)$" style="width:23px;height:15px;"> necesita ser definida expl&iacute;citamente.</p><pre class="codeinput"> g = @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+</pre><p>Una operaci&oacute;n combinada de desplazamiento y escalado est&aacute; representada por <img src="Practica_3_eq04964263277669034223.png" alt="$g(at + b)$" style="width:55px;height:15px;">, donde a y b son constantes reales arbitrarias. Como ejemplo, considere trazar <img src="Practica_3_eq04382857907666961138.png" alt="$g(2t + 1)$" style="width:56px;height:15px;"> sobre <img src="Practica_3_eq07532197713550074936.png" alt="$\left ( -2\leq t\leq 2 \right )$" style="width:79px;height:15px;">. Con a = 2, la funci&oacute;n se comprime por un factor de 2, lo que resulta en el doble de las oscilaciones por unidad t. Agregando la condici&oacute;n b &gt; 0, la forma de onda se desplaza hacia la izquierda. Dada la funci&oacute;n en l&iacute;nea g, es casi trivial obtener una gr&aacute;fica precisa.</p><pre class="codeinput">t = (-2:0.01:2);
+</pre><p>La Figura M1.6 confirma la compresi&oacute;n de forma de onda esperada y el desplazamiento a la izquierda. Como verificaci&oacute;n final, tenga en cuenta que la funci&oacute;n g (&middot;) se activa cuando el argumento de entrada es cero. Por lo tanto, <img src="Practica_3_eq04382857907666961138.png" alt="$g(2t + 1)$" style="width:56px;height:15px;"> deber&iacute;a activarse cuando <img src="Practica_3_eq16929734007547934415.png" alt="$2t + 1 = 0$" style="width:64px;height:12px;"> o en <img src="Practica_3_eq15224682324856416264.png" alt="$t = -0.5$" style="width:54px;height:10px;">, un hecho confirmado nuevamente por la figura M1.6.</p><pre class="codeinput">plot(t,g(2*t+1));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'g(2t+1)'</span>);
+title(<span class="string">'Figura M1.6: g(2t+1) sobre (-2&lt;=t&lt;=2)'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="Practica_3_07.png" alt=""> <p>Luego, considere trazar <img src="Practica_3_eq13616380641671935073.png" alt="$g(-t + 1)$" style="width:60px;height:15px;"> sobre <img src="Practica_3_eq07532197713550074936.png" alt="$\left ( -2\leq t\leq 2 \right )$" style="width:79px;height:15px;">. Como a &lt;0, la forma de onda se reflejar&aacute;. Afregando la condici&oacute;n b&gt;0, la forma de onda final se desplaza hacia la derecha.</p><p>La figura M1.7 confirma tanto la reflexi&oacute;n como el desplazamiento a la derecha.</p><pre class="codeinput"> plot(t,g(-t+1));
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'g(-t+1)'</span>);
+ title(<span class="string">'Figura M1.7: g(-t+1) sobre (-2&lt;=t&lt;=2)'</span>);
+ grid;
+</pre><img vspace="5" hspace="5" src="Practica_3_08.png" alt=""> <p>Hasta este punto, las Figs. M1.6 y M1.7 se pueden dibujar razonablemente a mano. Considere trazar la funci&oacute;n m&aacute;s complicada <img src="Practica_3_eq12418798429929549738.png" alt="$h(t)= g(2t + 1) + g (-t + 1)$" style="width:178px;height:15px;"> sobre <img src="Practica_3_eq07532197713550074936.png" alt="$\left ( -2\leq t\leq 2 \right )$" style="width:79px;height:15px;"> (Fig. M1.8). En este caso, un boceto a mano preciso es bastante dif&iacute;cil. Con MATLAB, el trabajo es mucho menos pesado.</p><pre class="codeinput"> plot(t,g(2*t+1) +g(-t+1));
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'h(t)'</span>);
+ title(<span class="string">'Figura M1.8: h(t)=g(2t + 1)+g(-t + 1) sobre (-2&lt;=t&lt;=2)'</span>);
+ grid;
+</pre><img vspace="5" hspace="5" src="Practica_3_09.png" alt=""> <h2 id="28">M1.4 Integraci&oacute;n num&eacute;rica y estimaci&oacute;n de energ&iacute;a de se&ntilde;al</h2><p>Las se&ntilde;ales interesantes a menudo tienen representaciones matem&aacute;ticas no triviales. Calcular la energ&iacute;a de la se&ntilde;al, que implica integrar el cuadrado de estas expresiones, puede ser una tarea desalentadora. Afortunadamente, muchas integrales dif&iacute;ciles pueden estimarse con precisi&oacute;n mediante t&eacute;cnicas de integraci&oacute;n num&eacute;rica. Incluso si la integraci&oacute;n parece simple, la integraci&oacute;n num&eacute;rica proporciona una buena manera de verificar los resultados anal&iacute;ticos.</p><p>Para empezar, consideramos la se&ntilde;al simple <img src="Practica_3_eq15069257353767425820.png" alt="$x(t)=e^{-t}(u(t)-u(t-1))$" style="width:167px;height:17px;">. La energia de la se&ntilde;al <img src="Practica_3_eq06960448015098660928.png" alt="$E_{x}=\int_{-\infty}^{\infty}\left | x(t) \right |^2 dt = \int_{0}^{1}e^{-2t}dt$" style="width:194px;height:21px;"> Rendimientos integradores <img src="Practica_3_eq04423639742275705833.png" alt="$E_{x}=(1-e^{-2})\approx 0.4323$" style="width:154px;height:17px;">. La integral de energ&iacute;a tambi&eacute;n se puede evaluar num&eacute;ricamente. La figura 1.27 ayuda a ilustrar el m&eacute;todo simple de aproximaci&oacute;n rectangular: eval&uacute;e el integrando en puntos separados uniformemente por ?t, multiplique cada uno por ?t para calcular las &aacute;reas rectangulares y luego sume todos los rect&aacute;ngulos. Primero, creamos la funci&oacute;n <img src="Practica_3_eq14833433867325483769.png" alt="$x(t)$" style="width:23px;height:15px;">.</p><pre class="codeinput">x = @(t)exp(-t).*((t&gt;=0)&amp;(t&lt;1));
+</pre><p>Dejando  <img src="Practica_3_eq09389209868753901894.png" alt="$\Delta t=0.01$" style="width:62px;height:11px;">, se crea un vector de tiempo adecuado.</p><pre class="codeinput">t = (0:0.01:1);
+</pre><p>El resultado final se calcula utilizando el comando sum.</p><pre class="codeinput">E_x =sum(x(t).*x(t)*0.01)
+</pre><pre class="codeoutput">
+E_x =
+
+    0.4367
+
+</pre><p>El resultado no es perfecto, pero con un 1% de error relativo est&aacute; cerca. Al reducir <img src="Practica_3_eq14413057877136744318.png" alt="$\Delta$" style="width:12px;height:11px;">, se mejora la aproximaci&oacute;n. Por ejemplo, <img src="Practica_3_eq01486734845536595863.png" alt="$\Delta t=0.001$" style="width:70px;height:11px;"> produce E_x = 0.4328, o 0.1% de error relativo.</p><p>Aunque es simple de visualizar, la aproximaci&oacute;n rectangular no es la mejor t&eacute;cnica de integraci&oacute;n num&eacute;rica. La funci&oacute;n MATLAB quad implementa una mejor t&eacute;cnica de integraci&oacute;n num&eacute;rica llamada cuadratura de Simpson adaptativa recursiva. Para operar, quad requiere una funci&oacute;n que describa el integrando, el l&iacute;mite inferior de integraci&oacute;n y el l&iacute;mite superior de integraci&oacute;n. Tenga en cuenta que no es necesario especificar <img src="Practica_3_eq14413057877136744318.png" alt="$\Delta$" style="width:12px;height:11px;">.</p><p>Para usar quad para estimar Ex, primero se debe describir el integrando.</p><pre class="codeinput">x_squared = @(t) exp(-2*t).*((t&gt;=0)&amp;(t&gt;1));
+</pre><p>Estimando Ex sigue inmediatamente.</p><pre class="codeinput"> E_x = integral(x_squared,0,100)
+</pre><pre class="codeoutput">
+E_x =
+
+    0.0677
+
+</pre><p>En este caso, el error relativo es -0.0026%.</p><p>Se pueden usar las mismas t&eacute;cnicas para estimar la energ&iacute;a de se&ntilde;ales m&aacute;s complejas. Considere <img src="Practica_3_eq00097224828082125527.png" alt="$g(t)$" style="width:23px;height:15px;">, definido previamente. La energ&iacute;a se expresa como <img src="Practica_3_eq07988667592666897396.png" alt="$E_{g}=\int_{0}^{\infty}e^{-2t}cos(2 \pi )dt$" style="width:145px;height:18px;"> . Existe una soluci&oacute;n de forma cerrada, pero requiere un poco de esfuerzo. MATLAB proporciona una respuesta m&aacute;s r&aacute;pidamente.</p><pre class="codeinput">g_squared = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t&gt;=0);
+</pre><p>Aunque el l&iacute;mite superior de integraci&oacute;n es infinito, la envoltura que se desintegra exponencialmente asegura que g (t) sea efectivamente cero mucho antes de t = 100. Por lo tanto, se usa un l&iacute;mite superior de t = 100 junto con <img src="Practica_3_eq01839625202798316333.png" alt="$\Delta t = 0.001$" style="width:70px;height:11px;">.</p><pre class="codeinput">t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+</pre><pre class="codeoutput">
+E_g =
+
+    0.2567
+
+</pre><p>Se obtiene una aproximaci&oacute;n ligeramente mejor con la funci&oacute;n quad.</p><pre class="codeinput">E_g = integral(g_squared, 0,100)
+</pre><pre class="codeoutput">
+E_g =
+
+    0.2562
+
+</pre><h2 id="36">Problema 5</h2><h2 id="37">Problema 1.2.2</h2><p>Para la se&ntilde;al x(t) ilustrada en Fig. P1.2-2</p><pre class="codeinput">x = @(t) (-t.*((t&gt;=-4) &amp; (t&lt;0))+t.*((t&gt;=0) &amp; (t&lt;2)));
+t=-7:0.0001:7;
+plot(t,x(t))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'Fig. P1.2-2 se&ntilde;al x(t)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_10.png" alt=""> <p>Bosqueje</p><p>a. x(t-4)</p><pre class="codeinput">plot(t,x(t-4))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'x(t-4)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_11.png" alt=""> <p>b. x(t/1.5)</p><pre class="codeinput">plot(t,x(t/1.5))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'x(t/1.5)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_12.png" alt=""> <p>c. x(-t)</p><pre class="codeinput">plot(t,x(-t))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'x(-t)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_13.png" alt=""> <p>d. x(2t-4)</p><pre class="codeinput">plot(t,x(2*t-4))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'x(2t-4)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_14.png" alt=""> <p>e. x(2-t)</p><pre class="codeinput">plot(t,x(2-t))
+grid <span class="string">on</span>
+axis([-7 7 0 5])
+title(<span class="string">'x(2-t)'</span>)
+</pre><img vspace="5" hspace="5" src="Practica_3_15.png" alt=""> <h2 id="43">Problema 6</h2><h2 id="44">Problema 1.1.3</h2><p>a. Encuentre la energ&iacute;a del par de se&ntilde;ales <img src="Practica_3_eq14833433867325483769.png" alt="$x(t)$" style="width:23px;height:15px;"> y <img src="Practica_3_eq10822186844117743572.png" alt="$y(t)$" style="width:23px;height:15px;"> en a y b. Bosqueje y encuentre la energ&iacute;a de las se&ntilde;ales <img src="Practica_3_eq01453654374001751400.png" alt="$x(t)+y(t)$" style="width:66px;height:15px;"> y <img src="Practica_3_eq10573341575466828922.png" alt="$x(t)-y(t)$" style="width:66px;height:15px;">. &iquest;Puede hacer una observacion a partir de estos resultados?</p><pre class="codeinput">graficasProblema6 ()
+</pre><img vspace="5" hspace="5" src="Practica_3_16.png" alt=""> <p>Funcion de calculo de la Energia</p><pre class="language-matlab"><span class="keyword">function</span> [] = energia (E)
+Ef= @(t)E(t).^2;
+integral(Ef, 0,100)
+<span class="keyword">end</span>
+</pre><p>Funcion a. x(t)</p><pre class="codeinput">x1 = @(t) 1.*((t&gt;=0) &amp; (t&lt;2));
+energia(x1);
+</pre><pre class="codeoutput">
+ans =
+
+    2.0000
+
+</pre><p>Funcion a. y(t)</p><pre class="codeinput">y1=@(t) (1.*((t&gt;=0) &amp; (t&lt;1)))+(-1.*((t&gt;=1) &amp; (t&lt;2)));
+energia(y1);
+</pre><pre class="codeoutput">
+ans =
+
+    2.0000
+
+</pre><p>Funcion b. x(t)</p><pre class="codeinput">x2=@(t) sin(t).*((t&gt;=0) &amp; (t&lt;2*pi));
+energia(x2);
+</pre><pre class="codeoutput">
+ans =
+
+    3.1416
+
+</pre><p>Funcion b. y(t)</p><pre class="codeinput">y2 = @(t) 1.*((t&gt;=0) &amp; (t&lt;2*pi));
+energia(y2);
+</pre><pre class="codeoutput">
+ans =
+
+    6.2832
+
+</pre><p>Funcion c. x(t)</p><pre class="codeinput">x3=@(t) sin(t).*((t&gt;=0) &amp; (t&lt;pi));
+energia(x3);
+</pre><pre class="codeoutput">
+ans =
+
+    1.5708
+
+</pre><p>Funcion c. y(t)</p><pre class="codeinput">y3 = @(t) 1.*((t&gt;=0) &amp; (t&lt;pi));
+energia(y3);
+</pre><pre class="codeoutput">
+ans =
+
+    3.1416
+
+</pre><p>Ahora con las sumas</p><pre class="codeinput">graficasProblema6_2 ()
+</pre><img vspace="5" hspace="5" src="Practica_3_17.png" alt=""> <p>Suma x(t)+y(t) funciones inciso a</p><pre class="codeinput">E1=@(t) x1(t)+y1(t);
+energia(E1);
+</pre><pre class="codeoutput">
+ans =
+
+    4.0000
+
+</pre><p>Resta x(t)-y(t) funciones inciso a</p><pre class="codeinput">E2=@(t) x1(t)-y1(t);
+energia(E2);
+</pre><pre class="codeoutput">
+ans =
+
+    4.0000
+
+</pre><p>Suma x(t)+y(t) funciones inciso b</p><pre class="codeinput">E3=@(t) x2(t)+y2(t);
+energia(E3);
+</pre><pre class="codeoutput">
+ans =
+
+    9.4248
+
+</pre><p>Resta x(t)-y(t) funciones inciso b</p><pre class="codeinput">E4=@(t) x2(t)-y2(t);
+energia(E4);
+</pre><pre class="codeoutput">
+ans =
+
+    9.4248
+
+</pre><p>Suma x(t)+y(t) funciones inciso c</p><pre class="codeinput">E5=@(t) x3(t)+y3(t);
+energia(E5);
+</pre><pre class="codeoutput">
+ans =
+
+    8.7124
+
+</pre><p>Resta x(t)-y(t) funciones inciso c</p><pre class="codeinput">E6=@(t) x3(t)-y3(t);
+energia(E6);
+</pre><pre class="codeoutput">
+ans =
+
+    0.7124
+
+</pre><p>Observaciones</p><p>Observamos que al momento de sumar o restar los pares de se&ntilde;ales de (a) y (b) el resultado de la energia es el mismo respectivamente.</p><p>b. Repita la parte(a) para el par de se&ntilde;ales ilustradas en c. &iquest;Su observacion en la parte (a) sigue siendo valida?</p><p>En cuanto a el inciso c no sucede asi puesto que el resultado es diferente, por lo tanto no se mantiene a: Esto pasa debido a que en almenos una de las se&ntilde;ales de los pares anteriores estaba definida de tal forma que tuviera simetria, por ende cuando se restaban las se&ntilde;ales al ser una unitaria y la otra simetrica el resultado de la se&ntilde;al era el mismo, pero en c no porque ninguna de las se&ntilde;ales podria decirse que es simetrica respecto al eje x.</p><h2 id="61">Problema 7</h2><h2 id="62">Problema 1.1.4</h2><p>Encuentre la potencia de la se&ntilde;al periodica <img src="Practica_3_eq14833433867325483769.png" alt="$x(t)$" style="width:23px;height:15px;"> mostrada en la siguiente figura. Encuentre tambien los valores rms de los valores:</p><pre class="codeinput">graficaProblema7()
+</pre><img vspace="5" hspace="5" src="Practica_3_18.png" alt=""> <p>Funcion de calculo de la Potencia</p><pre class="language-matlab"><span class="keyword">function</span> [Pf] = potencia (E,T)
+Ef=@(t)E(t).^2;
+Pf=(1/T).*(integral(Ef,0,T));
+<span class="keyword">end</span>
+</pre><pre class="codeinput">p1 =@(t)((t.^3).*((t&gt;=-2) &amp; (t&lt;=2)));
+p2=@(t)p1(mod(t,4))+p1(mod(t,-4));
+</pre><p>Potencia de la se&ntilde;al x(t)</p><pre class="codeinput">potencia(p2,4)
+</pre><pre class="codeoutput">
+rms =
+
+    3.0237
+
+
+ans =
+
+    9.1429
+
+</pre><p>a. <img src="Practica_3_eq08553293075075591414.png" alt="$-x(t)$" style="width:34px;height:15px;"></p><pre class="codeinput">p3=@(t)-p2(t);
+potencia(p3,4)
+</pre><pre class="codeoutput">
+rms =
+
+    3.0237
+
+
+ans =
+
+    9.1429
+
+</pre><p>b. <img src="Practica_3_eq09322914678131864641.png" alt="$2x(t)$" style="width:31px;height:15px;"></p><pre class="codeinput">p4=@(t)2.*p2(t);
+potencia(p4,4)
+</pre><pre class="codeoutput">
+rms =
+
+    6.0474
+
+
+ans =
+
+   36.5714
+
+</pre><h2 id="68">Referencias</h2><p><a href="https://es.mathworks.com/help/symbolic/heaviside.html">https://es.mathworks.com/help/symbolic/heaviside.html</a></p><p>&lt;https://es.mathworks.com/help/matlab/matlab_prog/anonymous-functions.html &gt;</p><p>Libro Lathi Linear systems and signals</p><p>&lt;https://es.mathworks.com/help/signal/examples/signal-generation-and-visualization.html &gt;</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Practica 3: Señales Continuas
+% * Enriquez Melendez Jeus
+% * Rosas Palacios Alan
+%% Objetivos
+% * Manipulación básica de MATLAB
+% * Gráficas de señales reales y complejas continuas
+% * Transformación de señales continuas (escalamientos y traslaciones)
+% * Calculo de energia y potencia de señales continuas
+%% Introducción 
+% MATLAB (Matrix Laboratory, “laboratorios de matrices”) creado en 1984 por
+% Mathworks. Es un software matemático con entorno de desarrollo integrado (IDE) 
+% que tiene un lenguaje de programación propio (Lenguaje M) y es multiplataforma 
+% (Unix, Windows y Apple Mac Os X).
+%
+% La primera versión surge de la idea de Clave Moler de usar paquetes de subrutinas 
+% escritas en Fortran en los cursos de Análisis Numérico y Algebra Lineal,
+% sin tener una necesidad de programas que usaran este lenguaje. Posteriormente en 1970 se crea 
+% el lenguaje de programación M proporcionando un acceso sencillo al software 
+% de matrices LINPACK y EISPACK sin tener que hacer uso del Lenguaje Fortran.
+%
+% El uso de MATLAB se ha vuelto indispensable en el día a día de ingenieros, 
+% matemáticos, físicos, empresas, estudiantes, entre otros. Sin embargo, este 
+% software tiene un costo elevado para algunos por lo cual existen alternativas de
+% software libre entre las cuales se encuentra Octave y Python con los cuales 
+% podremos realizar acciones iguales a las que proporciona MATLAB.
+%
+% * GNU OCTAVE:
+%
+% GNU Octave puede ser la alternativa más conocida a MATLAB. En desarrollo activo durante 
+% casi tres décadas, Octave se ejecuta en Windows, Mac y Linux, y está empaquetado para la 
+% mayoría de las distribuciones principales. Si está buscando un proyecto que sea lo más parecido 
+% posible al lenguaje MATLAB real, Octave puede ser una buena opción para usted; se esfuerza 
+% por una compatibilidad exacta, por lo que muchos de sus proyectos desarrollados 
+% para MATLAB pueden ejecutarse en Octave sin necesidad de modificaciones.
+%
+% A continuación se adjunta un enlace donde encontrar información acerca de GNU Octave
+% <https://www.gnu.org/software/octave/ enlace>
+%
+% * Python
+%
+% Anaconda: Alternativa a Canopy con instaladores para Windows, MacOS y Linux. Si bien es menos completo
+% que Canopy, Anaconda tiene las librerías de Python más importantes. También tiene opciones comerciales
+% para acelerar código pero la ventaja de Anaconda es que puedes usar Python 3 (versión más reciente y
+% recomendable si estás empezando). En resumen, para instalar Python en
+% Windows Anaconda es la mejor opción.
+%
+% Python(x,y) y/o WinPython: Alternativa totalmente libre y gratuita orientada especialmente para ingenieros
+% que quieren migrar de MATLAB a Python. De las anteriores es la que menos paquetes o librerías dispone
+% pero es la forma más sencilla de empezar. Amabas son sólo para Windows siendo WinPython la opción más
+% interesante puesto que no requiere instalación (portable) y la puedes llevar en tu memoria USB.
+%
+% Canopy: Conocida anteriormente como Enthought, dispone de instaladores para Windows, MAC y Linux
+% totalmente automáticos. Además incluye la mayoría de librerías y un sistema para añadir o actualizar los
+% paquetes de Python de forma automática.  A día de hoy no dispone de Python 3 por lo que recomendamos
+% Anaconda (primera opción) que, a diferencia de Canopy, permite su uso en empresa de forma gratuita.
+% 
+% A continuación se adjunta un enlace donde encontrar información acerca de
+% Python
+% <https://www.python.org enlace>
+%% Desarrollo
+%% Problema 1
+% La función _fun1_ recibe dos parametros $\omega$ ,
+% $a$ y regresa la evaluación $F(\omega)=a/(a^2+\omega^2)$.
+%
+% Esta función trabaja con $a\in R$ y $w\in  R^n$.
+%
+%   function [F] = fun1 (a,w)
+%   w=length(w);
+%   F=a/((a^2).*(w.^2));
+%   end
+%% Problema 2
+% Función que gráfica funciones de
+% $f:R\rightarrow R$. Ejemplo, la gráfica de $F(\omega)$ vs $\omega$ en el intervalo
+% $[-2,2]$ para $a=1$.
+%
+%   function []= Mifigure()
+%      w = -2:0.01:2;
+%      a=1;
+%              figure
+%              plot(w,a./((a^2).*(w.^2)))
+% end    
+%
+% Obteniendo como resultado al llamarla
+Mifigure()
+%% Problema 3
+% No se realiza
+%% Problema 4
+%% M1.1 Funciones anonimas
+% Una manera simple de usar funciones en MATLAB es utilizando funciones
+% anonimas. Una función anónima es una función que se almacena en un archivo de programa, pero está asociada a una variable cuyo tipo de datos es notfunction_handle Las funciones anónimas pueden aceptar
+% entradas y salidas de retorno, tal como lo hacen las funciones estándar. Sin embargo, solo pueden contener una sola instrucción ejecutable.
+f= @(t) exp(-t).*cos(2*pi*t);
+%%
+% Una vez definida, $f(t)$ puede ser evaluada simplemente pasandole un
+% valor de entrada interesante. Por ejemplo,
+t=0;
+f(t)
+%%
+% Evaluando $f(t)$ en $t=0$, se espera confirmar el resultado esperado. El mismo
+% resultado es obtenido pasando $t=0$ directamente.
+f(0)
+%%
+% Las entradas vectoriales permiten la evaluación de múltiples valores simultáneamente. Considere la tarea de graficar $f(t)$ durante el intervalo $(-2\leq t \leq  2)$.
+% El comportamiento bruto de la función es claro: $f(t)$ debe oscilar cuatro veces con una envoltura en descomposición.
+% Dado que los bocetos precisos a mano son engorrosos, las graficas
+% generadas por MATLAB son una alternativa atractiva. Como lo ilustra el siguiente ejemplo, se debe tener cuidado para garantizar resultados confiables.
+%
+% Supongamos que el vector $t$ se elige para incluir solo los enteros
+% contenidos en $(-2\leq t \leq  2)$, que lo mismo que 
+% $\left [ -2, -1,0,1,2 \right ]$.
+t=(-2:2);
+%%
+% Esta entrada vectorial se evalúa para formar una salida vectorial.
+f(t)
+%%
+% El comando plot representa gráficamente el resultado, que se muestra en la Fig. M1.1.
+plot(t,f(t));
+xlabel('t'); ylabel('f(t)'); grid;
+title('Figura M1.1: f(t)=e^{-t}cos(2 \pi t) para t = (-2:2)');
+%%
+% La cuadricula es añadida por el comando grid. Desafortunadamente, plot 
+% no ilustra el comportamiento oscilatorio esperado. Se requieren más puntos para representar adecuadamente $f(t)$. 
+%
+% La siguiente pregunta es, ¿cuantos puntos son suficientes? Si pocos
+% puntos son elegidos, la informacion se pierde, graficando 20 a 200 puntos
+% por oscilacion es normalmente adecuado. Para representar este caso, $t$
+% es elegida para dar 100 puntos por oscilacion.
+t=(-2:0.01:2);
+%%
+% Nuevamente la funcion es evaluada y graficada. Resultando lo mosrado en
+% la figura M1.2.
+plot (t,f(t));
+xlabel('t'); ylabel('f(t)'); grid;
+title('Figura M1.2: f(t)=e^{-t}cos(2 \pi t) para t = (-2:0.01:2)');
+%% M1.2 Operadores relacionales y la función de paso de unitario
+% La funcion de paso de unitario $u(t)$ surge naturalmente en muchas situaciones prácticas.
+% Por ejemplo, un paso unitario puede modelar el acto de encender un
+% sistema. Con la ayuda de operadores relacionales, los objetos en línea
+% pueden representar la función de paso unitario. En MATLAB, 
+% Un operador relacional compara dos elementos. Si la comparación es
+% verdadera, se devuelve un verdadero lógico (1). Si la comparación es
+% falsa, se devuelve un falso lógico (0). Algunas veces llamadas funciones
+% indicadoras, los operadores relacionales indican si una condición es
+% verdadera. Seis operadores relacionales están disponibles: <, >, <=, >=,
+% ==, y ~=.
+% La función de paso unitario se define fácilmente utilizando el operador relacional >=.
+u =@(t) t>=0;
+%%
+% Cualquier función con una discontinuidad de salto, como el paso de la
+% unidad, es difícil de trazar. Considere trazar $u(t)$ usando $t=(-2:2)$.
+ t = (-2:2); 
+%%
+% Dos problemas significativos son evidentes en la gráfica resultante, que
+% se muestra en la figura M1.3. Primero, MATLAB escala automáticamente los
+% ejes de la trama para unir estrechamente los datos. En este caso, esta
+% característica normalmente deseable oscurece la mayor parte de la trama.
+% En segundo lugar, MATLAB conecta los datos de la trama con líneas, lo que
+% dificulta la verdadera discontinuidad del salto. La resolución aproximada
+% del vector t enfatiza el efecto al mostrar una línea inclinada errónea
+% entre $t = - 1$ y $t - 0$.    
+ plot (t,u(t)); 
+ xlabel('t'); 
+ ylabel('u(t)');
+ title('Figura M1.3: u(t) para t = (-2:2)');
+%%
+% El primer problema se corrige ampliando verticalmente el cuadro
+% delimitador con el comando axis. El segundo problema se reduce, pero no
+% se elimina, al agregar puntos al vector $t$.   
+ t = (-2:0.01:2);
+%%
+% El argumento del vector de cuatro elementos del eje (axis) especifica el eje x
+% mínimo, el eje x máximo, el eje y mínimo y el eje y máximo,
+% respectivamente. Los resultados mejorados se muestran en la Fig. M1.4.
+ plot (t,u(t));
+ xlabel('t'); 
+ ylabel('u(t)'); 
+ axis ([-2 2 -0.1 1.1]); 
+ title('Figura M1.4: u(t) para t = (-2:0.01:2) con modificación de ejes');
+%%
+% Los operadores relacionales se pueden combinar usando AND lógico, OR
+% lógico y negación lógica: &, |, y ~, respectivamente.
+% Por ejemplo (t>0) & (t<1) y ~((t<=0) | (t>=1)) ambos correctos si
+% $0<t<1$. Para demostrar, considere definir y graficar la unidad de pulso
+% $p(t)=u(t)-u(t-1)$, como se muestra en la figura M1.5:
+p =@(t) t>=0 & t<1;
+ t = (-1:0.01:2); 
+ plot(t,p(t)); 
+ xlabel('t'); 
+ ylabel('p(t) = u(t)-u(t-1)'); 
+ axis ([-1 2 -.1 1.1]);
+title('Figura M1.5: p(t)=u(t)-u(t-1) sobre (-1<=t<=2)');
+%%
+% Para operandos escalares, MATLAB también admite dos construcciones
+% lógicas de cortocircuito. Se realiza un AND lógico de cortocircuito
+% utilizando &&, y se realiza un OR lógico de cortocircuito utilizando | |
+% Los operadores lógicos de cortocircuito suelen ser más eficientes que los
+% operadores lógicos tradicionales porque prueban la segunda parte de la
+% expresión solo cuando es necesario. Es decir, cuando la expresión escalar
+% A se encuentra falsa en (A y B), la expresión escalar B no se evalúa, ya
+% que un resultado falso ya está garantizado. De manera similar, la
+% expresión escalar B no se evalúa cuando la expresión escalar A se
+% encuentra verdadera en (A | | B), ya que un resultado verdadero ya está
+% garantizado.
+%% M1.3 Operaciones de visualización en la variable independiente
+% Se encuentran comúnmente dos operaciones en la variable independiente de
+% una función: desplazamiento y escalado. Los objetos en línea son
+% adecuados para investigar ambas operaciones.   
+%
+% Comsiderando $g(t)= f(t)u(t)= e^{-t}cos(2 pi t)u(t)$ Una versión realizable de $f(t)$.
+% Desafortunadamente, MATLAB no puede multiplicar objetos en línea. Es
+% decir, MATLAB informa un error para g = f*u cuando f y u son objetos en
+% línea. Más bien, $g(t)$ necesita ser definida explícitamente.  
+ g = @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+%%
+% Una operación combinada de desplazamiento y escalado está representada
+% por $g(at + b)$, donde a y b son constantes reales arbitrarias. Como
+% ejemplo, considere trazar $g(2t + 1)$ sobre $\left ( -2\leq t\leq 2 \right )$. Con a = 2, la
+% función se comprime por un factor de 2, lo que resulta en el doble de las
+% oscilaciones por unidad t. Agregando la condición b > 0, la forma de onda
+% se desplaza hacia la izquierda. Dada la función en línea g, es casi
+% trivial obtener una gráfica precisa.   
+t = (-2:0.01:2);
+%%
+% La Figura M1.6 confirma la compresión de forma de onda esperada y el
+% desplazamiento a la izquierda. Como verificación final, tenga en cuenta
+% que la función g (·) se activa cuando el argumento de entrada es cero.
+% Por lo tanto, $g(2t + 1)$ debería activarse cuando $2t + 1 = 0$ o en $t =
+% -0.5$, un hecho confirmado nuevamente por la figura M1.6. 
+plot(t,g(2*t+1)); 
+xlabel('t'); 
+ylabel('g(2t+1)'); 
+title('Figura M1.6: g(2t+1) sobre (-2<=t<=2)');
+grid;
+%%
+% Luego, considere trazar $g(-t + 1)$ sobre $\left ( -2\leq t\leq 2 \right )$. Como a <0, la forma de onda se reflejará. Afregando la condición b>0, la forma de onda final se desplaza hacia la derecha. 
+%
+% La figura M1.7 confirma tanto la reflexión como el desplazamiento a la derecha.
+ plot(t,g(-t+1));
+ xlabel('t'); 
+ ylabel('g(-t+1)'); 
+ title('Figura M1.7: g(-t+1) sobre (-2<=t<=2)');
+ grid;
+%%
+% Hasta este punto, las Figs. M1.6 y M1.7 se pueden dibujar razonablemente
+% a mano. Considere trazar la función más complicada $h(t)= g(2t + 1) + g
+% (-t + 1)$ sobre $\left ( -2\leq t\leq 2 \right )$ (Fig. M1.8). En este caso, un boceto a mano
+% preciso es bastante difícil. Con MATLAB, el trabajo es mucho menos
+% pesado.    
+ plot(t,g(2*t+1) +g(-t+1)); 
+ xlabel('t'); 
+ ylabel('h(t)'); 
+ title('Figura M1.8: h(t)=g(2t + 1)+g(-t + 1) sobre (-2<=t<=2)');
+ grid;
+%% M1.4 Integración numérica y estimación de energía de señal
+% Las señales interesantes a menudo tienen representaciones matemáticas no
+% triviales. Calcular la energía de la señal, que implica integrar el
+% cuadrado de estas expresiones, puede ser una tarea desalentadora.
+% Afortunadamente, muchas integrales difíciles pueden estimarse con
+% precisión mediante técnicas de integración numérica. Incluso si la
+% integración parece simple, la integración numérica proporciona una buena
+% manera de verificar los resultados analíticos.      
+%
+% Para empezar, consideramos la señal simple $x(t)=e^{-t}(u(t)-u(t-1))$. La
+% energia de la señal $E_{x}=\int_{-\infty}^{\infty}\left | x(t) \right |^2
+% dt = \int_{0}^{1}e^{-2t}dt$ Rendimientos integradores
+% $E_{x}=(1-e^{-2})\approx 0.4323$.
+% La integral de energía también se puede evaluar numéricamente. La figura
+% 1.27 ayuda a ilustrar el método simple de aproximación rectangular:
+% evalúe el integrando en puntos separados uniformemente por ?t,
+% multiplique cada uno por ?t para calcular las áreas rectangulares y luego
+% sume todos los rectángulos. Primero, creamos la función $x(t)$.    
+x = @(t)exp(-t).*((t>=0)&(t<1));
+%%
+% Dejando  $\Delta t=0.01$, se crea un vector de tiempo adecuado.
+t = (0:0.01:1);
+%%
+% El resultado final se calcula utilizando el comando sum.
+E_x =sum(x(t).*x(t)*0.01)
+%%
+% El resultado no es perfecto, pero con un 1% de error relativo está cerca.
+% Al reducir $\Delta$, se mejora la aproximación. Por ejemplo, $\Delta t=0.001$ produce
+% E_x = 0.4328, o 0.1% de error relativo.
+%
+% Aunque es simple de visualizar, la aproximación rectangular no es la
+% mejor técnica de integración numérica. La función MATLAB quad implementa
+% una mejor técnica de integración numérica llamada cuadratura de Simpson
+% adaptativa recursiva. Para operar, quad requiere una función que describa
+% el integrando, el límite inferior de integración y el límite superior de
+% integración. Tenga en cuenta que no es necesario especificar $\Delta$.    
+%
+% Para usar quad para estimar Ex, primero se debe describir el integrando. 
+x_squared = @(t) exp(-2*t).*((t>=0)&(t>1));
+%%
+% Estimando Ex sigue inmediatamente.
+ E_x = integral(x_squared,0,100)
+%% 
+% En este caso, el error relativo es -0.0026%.
+% 
+% Se pueden usar las mismas técnicas para estimar la energía de señales más
+% complejas. Considere $g(t)$, definido previamente. La energía se expresa
+% como $E_{g}=\int_{0}^{\infty}e^{-2t}cos(2 \pi )dt$ . Existe una solución de forma cerrada,
+% pero requiere un poco de esfuerzo. MATLAB proporciona una respuesta más
+% rápidamente. 
+g_squared = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t>=0);
+%% 
+% Aunque el límite superior de integración es infinito, la envoltura que se
+% desintegra exponencialmente asegura que g (t) sea efectivamente cero
+% mucho antes de t = 100. Por lo tanto, se usa un límite superior de t =
+% 100 junto con $\Delta t = 0.001$.   
+t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+%%
+% Se obtiene una aproximación ligeramente mejor con la función quad. 
+E_g = integral(g_squared, 0,100)
+%% Problema 5
+%% Problema 1.2.2 
+% 
+% Para la señal x(t) ilustrada en Fig. P1.2-2 
+x = @(t) (-t.*((t>=-4) & (t<0))+t.*((t>=0) & (t<2)));
+t=-7:0.0001:7;
+plot(t,x(t))
+grid on
+axis([-7 7 0 5])
+title('Fig. P1.2-2 señal x(t)')
+%%
+% Bosqueje
+%
+% a. x(t-4) 
+plot(t,x(t-4))
+grid on
+axis([-7 7 0 5])
+title('x(t-4)')
+%%
+% b. x(t/1.5) 
+plot(t,x(t/1.5))
+grid on
+axis([-7 7 0 5])
+title('x(t/1.5)')
+%%
+% c. x(-t) 
+plot(t,x(-t))
+grid on
+axis([-7 7 0 5])
+title('x(-t)')
+%%
+% d. x(2t-4) 
+plot(t,x(2*t-4))
+grid on
+axis([-7 7 0 5])
+title('x(2t-4)')
+%%
+% e. x(2-t)
+plot(t,x(2-t))
+grid on
+axis([-7 7 0 5])
+title('x(2-t)')
+%% Problema 6
+%% Problema 1.1.3
+% a. Encuentre la energía del par de señales $x(t)$ y $y(t)$ en a y b.
+% Bosqueje y encuentre la energía de las señales $x(t)+y(t)$ y $x(t)-y(t)$. 
+% ¿Puede hacer una observacion a partir de estos resultados?
+graficasProblema6 ()
+%%
+% Funcion de calculo de la Energia
+%
+%   function [] = energia (E)
+%   Ef= @(t)E(t).^2;
+%   integral(Ef, 0,100)
+%   end
+%%
+% Funcion a. x(t)
+x1 = @(t) 1.*((t>=0) & (t<2));
+energia(x1);
+%%
+% Funcion a. y(t)
+y1=@(t) (1.*((t>=0) & (t<1)))+(-1.*((t>=1) & (t<2)));
+energia(y1);
+%%
+% Funcion b. x(t)
+x2=@(t) sin(t).*((t>=0) & (t<2*pi));
+energia(x2);
+%%
+% Funcion b. y(t)
+y2 = @(t) 1.*((t>=0) & (t<2*pi));
+energia(y2);
+%%
+% Funcion c. x(t)
+x3=@(t) sin(t).*((t>=0) & (t<pi));
+energia(x3);
+%%
+% Funcion c. y(t)
+y3 = @(t) 1.*((t>=0) & (t<pi));
+energia(y3);
+%%
+% Ahora con las sumas
+graficasProblema6_2 ()
+%%
+% Suma x(t)+y(t) funciones inciso a
+E1=@(t) x1(t)+y1(t);
+energia(E1);
+%%
+% Resta x(t)-y(t) funciones inciso a
+E2=@(t) x1(t)-y1(t);
+energia(E2);
+%%
+% Suma x(t)+y(t) funciones inciso b
+E3=@(t) x2(t)+y2(t);
+energia(E3);
+%%
+% Resta x(t)-y(t) funciones inciso b
+E4=@(t) x2(t)-y2(t);
+energia(E4);
+%%
+% Suma x(t)+y(t) funciones inciso c
+E5=@(t) x3(t)+y3(t);
+energia(E5);
+%%
+% Resta x(t)-y(t) funciones inciso c
+E6=@(t) x3(t)-y3(t);
+energia(E6);
+%%
+% Observaciones
+%
+% Observamos que al momento de sumar o restar los pares de señales de (a) y (b) el resultado de la energia es el mismo
+% respectivamente.
+%%
+% b. Repita la parte(a) para el par de señales ilustradas en c.
+% ¿Su observacion en la parte (a) sigue siendo valida?
+%
+% En cuanto a el inciso c no sucede asi puesto que el resultado es diferente, por lo tanto no se mantiene a: 
+% Esto pasa debido a que en almenos una de las señales de los pares anteriores estaba definida de tal forma
+% que tuviera simetria, por ende cuando se restaban las señales al ser una unitaria y la otra simetrica el resultado
+% de la señal era el mismo, pero en c no porque ninguna de las señales podria decirse que es simetrica respecto al eje x.
+%% Problema 7
+%% Problema 1.1.4
+% Encuentre la potencia de la señal periodica $x(t)$ mostrada en la siguiente figura.
+% Encuentre tambien los valores rms de los valores:
+graficaProblema7()
+%% 
+% Funcion de calculo de la Potencia
+%
+%   function [Pf] = potencia (E,T)
+%   Ef=@(t)E(t).^2;
+%   Pf=(1/T).*(integral(Ef,0,T));
+%   end
+%%
+p1 =@(t)((t.^3).*((t>=-2) & (t<=2)));
+p2=@(t)p1(mod(t,4))+p1(mod(t,-4));
+%%
+% Potencia de la señal x(t)
+potencia(p2,4)
+%%
+% a. $-x(t)$
+p3=@(t)-p2(t);
+potencia(p3,4)
+%%
+% b. $2x(t)$
+p4=@(t)2.*p2(t);
+potencia(p4,4)
+%% Referencias
+% <https://es.mathworks.com/help/symbolic/heaviside.html>
+%
+% <https://es.mathworks.com/help/matlab/matlab_prog/anonymous-functions.html >
+%
+% Libro Lathi Linear systems and signals
+%
+% <https://es.mathworks.com/help/signal/examples/signal-generation-and-visualization.html >
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
